@@ -118,7 +118,7 @@ def listar_tarefas():
     tarefas = carregar_tarefas()
 
     # Filtros opcionais via query string
-    status_filtro     = request.args.get("status")
+    status_filtro = request.args.get("status")
     prioridade_filtro = request.args.get("prioridade")
 
     if status_filtro:
@@ -220,9 +220,9 @@ def estatisticas():
     tarefas = carregar_tarefas()
 
     total = len(tarefas)
-    a_fazer      = sum(1 for t in tarefas if t["status"] == "a_fazer")
+    a_fazer = sum(1 for t in tarefas if t["status"] == "a_fazer")
     em_progresso = sum(1 for t in tarefas if t["status"] == "em_progresso")
-    concluido    = sum(1 for t in tarefas if t["status"] == "concluido")
+    concluido = sum(1 for t in tarefas if t["status"] == "concluido")
 
     por_prioridade = {
         "alta":  sum(1 for t in tarefas if t["prioridade"] == "alta"),
