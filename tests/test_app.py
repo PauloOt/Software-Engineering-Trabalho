@@ -54,6 +54,27 @@ def test_rota_raiz(cliente):
 
 
 # ─────────────────────────────────────────────
+# TESTES: HEALTHCHECK
+# ─────────────────────────────────────────────
+
+def test_health_status_ok(cliente):
+    """Endpoint /health deve responder 200 com status 'ok'."""
+    resposta = cliente.get("/health")
+    assert resposta.status_code == 200
+    dados = json.loads(resposta.data)
+    assert dados["status"] == "ok"
+
+
+def test_health_inclui_timestamp(cliente):
+    """Endpoint /health deve incluir um timestamp ISO."""
+    resposta = cliente.get("/health")
+    dados = json.loads(resposta.data)
+    assert "timestamp" in dados
+    # Verifica que o timestamp esta em formato ISO (com 'T' separador)
+    assert "T" in dados["timestamp"]
+
+
+# ─────────────────────────────────────────────
 # TESTES: CREATE
 # ─────────────────────────────────────────────
 
