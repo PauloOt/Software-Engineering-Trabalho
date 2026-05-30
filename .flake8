@@ -1,0 +1,15 @@
+[flake8]
+# Configuração do linter usada localmente e na pipeline de CI.
+# Mantida igual aos parâmetros do workflow .github/workflows/ci.yml
+# para que o desenvolvedor reproduza o mesmo resultado do CI rodando
+# apenas `flake8 src/` no terminal.
+
+max-line-length = 100
+exclude =
+    __pycache__,
+    .venv,
+    venv,
+    .pytest_cache,
+    build,
+    dist
+statistics = True
