@@ -28,3 +28,11 @@ src/tasks.json
 # OS
 Thumbs.db
 .DS_Store
+
+# Mídia do pitch (arquivos grandes não devem ser versionados)
+*.mp4
+*.mov
+*.avi
+
+# Roteiro de apresentação (uso interno)
+docs/roteiro_pitch.md
