@@ -45,14 +45,33 @@ def index():
     """Rota de boas-vindas."""
     return jsonify({
         "sistema": "TaskFlow - Gerenciamento de Tarefas",
-        "versao": "1.0.0",
+        "versao": "1.1.0",
         "rotas": {
+            "GET  /":                  "Informacoes da API",
+            "GET  /health":            "Healthcheck do servico",
             "GET  /tarefas":           "Lista todas as tarefas",
             "GET  /tarefas/<id>":      "Retorna uma tarefa específica",
             "POST /tarefas":           "Cria uma nova tarefa",
             "PUT  /tarefas/<id>":      "Atualiza uma tarefa existente",
-            "DELETE /tarefas/<id>":    "Remove uma tarefa"
+            "DELETE /tarefas/<id>":    "Remove uma tarefa",
+            "GET  /estatisticas":      "Dashboard de estatisticas"
         }
+    })
+
+
+# ─────────────────────────────────────────────
+# HEALTHCHECK
+# ─────────────────────────────────────────────
+
+@app.route("/health", methods=["GET"])
+def health():
+    """
+    Endpoint de healthcheck para monitoramento.
+    Util para sondas de liveness/readiness em ambientes de orquestracao.
+    """
+    return jsonify({
+        "status": "ok",
+        "timestamp": datetime.utcnow().isoformat()
     })
 
 
